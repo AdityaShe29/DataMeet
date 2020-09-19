@@ -22,6 +22,7 @@ class Navbar extends Component {
             
           </ul>
           <ul className="navbar-nav navbar-nav-right ml-lg-auto">
+            {/*
             <li className="nav-item  nav-profile border-0">
               <Dropdown alignRight>
                 <Dropdown.Toggle className="nav-link count-indicator p-0 toggle-arrow-hide bg-transparent">
@@ -63,6 +64,8 @@ class Navbar extends Component {
                 </Dropdown.Menu>
               </Dropdown>
             </li>
+            */}
+            {/*
             <li className="nav-item  nav-profile border-0 pl-4">
               <Dropdown alignRight>
                 <Dropdown.Toggle className="nav-link count-indicator p-0 toggle-arrow-hide bg-transparent">
@@ -107,11 +110,12 @@ class Navbar extends Component {
                 </Dropdown.Menu>
               </Dropdown>
             </li>
+            */}
             <li className="nav-item  nav-profile border-0">
               <Dropdown alignRight>
                 <Dropdown.Toggle className="nav-link count-indicator bg-transparent">
-                  <span className="profile-text">Richard V.Welsh !</span>
-                  <img className="img-xs rounded-circle" src={require("../../assets/images/faces/face8.jpg")} alt="Profile" />
+                  <span className="profile-text">VARIABLE</span>
+                  <img className="img-xs rounded-circle" src={require("../../assets/images/Default_Profile_Picture.svg")} alt="Profile" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="preview-list navbar-dropdown pb-3">
                   <Dropdown.Item className="dropdown-item p-0 preview-item d-flex align-items-center border-bottom" href="!#" onClick={evt =>evt.preventDefault()}>

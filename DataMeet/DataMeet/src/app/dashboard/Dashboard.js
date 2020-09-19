@@ -1,12 +1,99 @@
 import React, { Component } from 'react';
-import { Line, Doughnut, Bar } from 'react-chartjs-2';
 import { Sparklines, SparklinesBars } from 'react-sparklines';
 import { ProgressBar, Dropdown } from 'react-bootstrap';
+import {Line, Bar, Doughnut, Pie, Scatter} from 'react-chartjs-2';
 
 // import DatePicker from 'react-datepicker';
 // import { Dropdown } from 'react-bootstrap';
 
+
+
+
 export class Dashboard extends Component {
+  data = {
+    labels: ["Happy", "Sad", "Surprised", "Confused"],
+    datasets: [{
+      label: '# of Votes',
+      data: [10, 11, 50, 30],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1,
+      fill: false
+    }]
+};
+
+options = {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    },
+    legend: {
+      display: false
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    }
+
+};
+
+
+  doughnutPieData = {
+    datasets: [{
+      data: [10, 10, 50, 30],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
+        'rgba(54, 162, 235, 0.5)',
+        'rgba(255, 206, 86, 0.5)',
+        'rgba(75, 192, 192, 0.5)',
+        'rgba(153, 102, 255, 0.5)',
+        'rgba(255, 159, 64, 0.5)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+    }],
+  
+    // These labels appear in the legend and in the tooltips when hovering different arcs
+    labels: [
+      'Happy',
+      'Sad',
+      'Surprised',
+      'Confused'
+    ]
+  };
+  
+  doughnutPieOptions = {
+    responsive: true,
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -68,6 +155,8 @@ addTodo (event) {
         
     })
 
+
+
     this.setState({
         todos: todos,
         inputValue: ''
@@ -88,162 +177,20 @@ inputChangeHandler(event) {
         inputValue: event.target.value
     });
 }
-  areaData = {
-    labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-    datasets: [{
-        label: 'Product-1',
-        data: [3, 3, 8, 5, 7, 4, 6, 4, 6, 3],
-        backgroundColor: '#2196f3',
-        borderColor: '#0c83e2',
-        borderWidth: 1,
-        fill: true,
-        datasetKeyProvider: "key1"
-      },
-      {
-        label: 'Product-2',
-        data: [7, 5, 14, 7, 12, 6, 10, 6, 11, 5],
-        backgroundColor: '#19d895',
-        borderColor: '#15b67d',
-        borderWidth: 1,
-        fill: true,
-        datasetKeyProvider: "key2"
-      }
-    ]
-  };
 
-  areaOptions = {
-    responsive: true,
-    maintainAspectRatio: true,
-    scales: {
-      yAxes: [{
-        gridLines: {
-          color: "#F2F6F9"
-        },
-        ticks: {
-          beginAtZero: true,
-          min: 0,
-          max: 20,
-          stepSize: 5,
-        }
-      }],
-      xAxes: [{
-        gridLines: {
-          color: "#F2F6F9"
-        },
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    },
-    legend: {
-      display: false
-    },
-    elements: {
-      point: {
-        radius: 2
-      }
-    },
-    layout: {
-      padding: {
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0
-      }
-    },
-    stepsize: 1
-  };
-  usersDoughnutChartData = {
-    datasets: [{
-      data: [80, 34, 100],
-      backgroundColor: [
-        "#19d895",
-        "#2196f3",
-        "#dde4eb"
-      ],
-      borderColor: [
-        "#19d895",
-        "#2196f3",
-        "#dde4eb"
-      ],
-    }],
-    labels: [
-      'Request',
-      'Email',
-    ]
-};
-
-usersDoughnutChartOptions = {
-  cutoutPercentage: 70,
-  animationEasing: "easeOutBounce",
-  animateRotate: true,
-  animateScale: false,
-  responsive: true,
-  maintainAspectRatio: true,
-  showScale: true,
-  legend: {
-    display: false
-  },
-  layout: {
-    padding: {
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0
-    }
-  }
-};
-
-amountDueBarData = {
-  labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10"],
-  datasets: [{
-    label: 'Profit',
-    data: [39, 19, 25, 16, 31, 39, 12, 18, 33, 24],
-    backgroundColor: [
-      '#2196f3','#2196f3','#2196f3','#2196f3','#2196f3','#2196f3','#2196f3','#2196f3','#2196f3','#2196f3',
-    ],
-    borderColor: [
-      '#2196f3','#2196f3','#2196f3','#2196f3','#2196f3','#2196f3','#2196f3','#2196f3','#2196f3','#2196f3',
-    ],
-    borderWidth: 2,
-    fill: true
-  }]
-};
-
-amountDueBarOptions = {
-  layout: {
-    padding: {
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0
-    }
-  },
-
-  scales: {
-    responsive: true,
-    maintainAspectRatio: true,
-    yAxes: [{
-      display: false,
-      gridLines: {
-        color: 'rgba(0, 0, 0, 0.03)',
-      }
-    }],
-    xAxes: [{
-      display: false,
-      barPercentage: 0.4,
-      gridLines: {
-        display: false,
-      }
-    }]
-  },
-  legend: {
-    display: false
-  }
-};
 toggleProBanner() {
   document.querySelector('.proBanner').classList.toggle("hide");
 }
+
+getCurrentDate(separator=''){
+
+  let newDate = new Date()
+  let date = newDate.getDate();
+  let month = newDate.getMonth() + 1;
+  let year = newDate.getFullYear();
+  
+  return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
+  }
   
   render () {
     return (
@@ -262,7 +209,7 @@ toggleProBanner() {
                         <div className="card">
                             <div className="card-body">
                                 <h4 className="card-title">Real Time Student Emotions (Bar Chart)</h4>
-                                <Line data={this.data} options={this.options} />
+                                <Bar data={this.data} options={this.options} />
                             </div>
                         </div>
                     </div>
@@ -270,7 +217,7 @@ toggleProBanner() {
                         <div className="card">
                             <div className="card-body">
                                 <h4 className="card-title">Real Time Student Emotions (Doughnut Chart)</h4>
-                                <Bar data={this.data} options={this.options} />    
+                                <Doughnut data={this.doughnutPieData} options={this.doughnutPieOptions} />  
                             </div>
                         </div>
                     </div>
@@ -281,17 +228,17 @@ toggleProBanner() {
               <div className="card-body">
                 <div className="clearfix">
                   <div className="float-left">
-                    <i className="mdi mdi-cube text-danger icon-lg"></i>
+                  <img src={require("../../assets/images/ThumbsUp_Logo2.svg")} padding = "15px" width = "60px" alt="logo" />
                   </div>
                   <div className="float-right">
-                    <p className="mb-0 text-right text-dark">Number of Students Who Say They Got It</p>
+                    <p className="mb-1 text-right text-dark">Percent of Class <br></br>Who Say They Got It</p>
                     <div className="fluid-container">
-                      <h3 className="font-weight-medium text-right mb-0 text-dark">$65,650</h3>
+                      <h3 className="font-weight-medium text-right mb-0 text-dark">35%</h3>
                     </div>
                   </div>
                 </div>
                 <p className="text-muted mt-3 mb-0">
-                  <i className="mdi mdi-alert-octagon mr-1" aria-hidden="true"></i> 65% lower growth </p>
+                  <i className="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> As per student submissions </p>
               </div>
             </div>
           </div>
@@ -300,17 +247,17 @@ toggleProBanner() {
               <div className="card-body">
                 <div className="clearfix">
                   <div className="float-left">
-                    <i className="mdi mdi-receipt text-warning icon-lg"></i>
+                  <img src={require("../../assets/images/ThumbsDown_Logo.svg")} padding = "15px" width = "60px" alt="logo" />
                   </div>
                   <div className="float-right">
-                    <p className="mb-0 text-right text-dark">Orders</p>
+                    <p className="mb-0 text-right text-dark">Percent of Class <br></br>Who Still Need Help</p>
                     <div className="fluid-container">
-                      <h3 className="font-weight-medium text-right mb-0 text-dark">3455</h3>
+                      <h3 className="font-weight-medium text-right mb-0 text-dark">65%</h3>
                     </div>
                   </div>
                 </div>
                 <p className="text-muted mt-3 mb-0">
-                  <i className="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> Product-wise sales </p>
+                  <i className="mdi mdi-bookmark-outline mr-1" aria-hidden="true"></i> As per student submissions </p>
               </div>
             </div>
           </div>
@@ -322,14 +269,14 @@ toggleProBanner() {
                     <i className="mdi mdi-poll-box text-success icon-lg"></i>
                   </div>
                   <div className="float-right">
-                    <p className="mb-0 text-right text-dark">Sales</p>
+                    <p className="mb-0 text-right text-dark">Total Meeting<br></br>Time Analyzed</p>
                     <div className="fluid-container">
-                      <h3 className="font-weight-medium text-right mb-0 text-dark">5693</h3>
+                      <h3 className="font-weight-medium text-right mb-0 text-dark">45</h3>
                     </div>
                   </div>
                 </div>
                 <p className="text-muted mt-3 mb-0">
-                  <i className="mdi mdi-calendar mr-1" aria-hidden="true"></i> Weekly Sales </p>
+                  <i className="mdi mdi-calendar mr-1" aria-hidden="true"></i> In Minutes </p>
               </div>
             </div>
           </div>
@@ -341,18 +288,19 @@ toggleProBanner() {
                     <i className="mdi mdi-account-box-multiple text-info icon-lg"></i>
                   </div>
                   <div className="float-right">
-                    <p className="mb-0 text-right text-dark">Employees</p>
+                    <p className="mb-0 text-right text-dark">Total Number <br></br>Of Students</p>
                     <div className="fluid-container">
-                      <h3 className="font-weight-medium text-right mb-0 text-dark">246</h3>
+                      <h3 className="font-weight-medium text-right mb-0 text-dark">43</h3>
                     </div>
                   </div>
                 </div>
                 <p className="text-muted mt-3 mb-0">
-                  <i className="mdi mdi-reload mr-1" aria-hidden="true"></i> Product-wise sales </p>
+                  <i className="mdi mdi-reload mr-1" aria-hidden="true"></i> Across Only This Class </p>
               </div>
             </div>
           </div>
         </div>
+        {/*}
         <div className="row">
           <div className="col-md-12 grid-margin">
             <div className="card">
@@ -377,6 +325,7 @@ toggleProBanner() {
             </div>
           </div>
         </div>
+    */}
         <div className="row">
           <div className="col-xl-4 col-lg-6 col-sm-6  grid-margin stretch-card">
             <div className="card">
@@ -412,43 +361,48 @@ toggleProBanner() {
               <div className="card-body">
                 <h4 className="card-title">Schedules</h4>
                 <div className="shedule-list d-xl-flex align-items-center justify-content-between mb-3">
-                  <h3>27 Sep 2018</h3>
+                  <h3>{this.getCurrentDate('/')}</h3>
                   <small>21 Events</small>
                 </div>
                 <div className="event border-bottom py-3">
-                  <p className="mb-2 font-weight-medium">Skype call with alex</p>
+                  <p className="mb-2 font-weight-medium">Skype call with class</p>
                   <div className="d-flex align-items-center">
-                    <div className="badge badge-success">3:45 AM</div>
-                    <small className="text-muted ml-2">London, UK</small>
-                    <div className="image-grouped ml-auto mt-2 mt-xl-0">
-                      <img src={require("../../assets/images/faces/face10.jpg")} alt="profile" />
-                      <img src={require("../../assets/images/faces/face13.jpg")} alt="profile" /> </div>
+                    <div className="badge badge-success">3:45 PM</div>
+                    <small className="text-muted ml-2">Cambridge, Massachusetts</small>
+                    
                   </div>
                 </div>
                 <div className="event py-3 border-bottom">
-                  <p className="mb-2 font-weight-medium">Data Analysing with team</p>
+                  <p className="mb-2 font-weight-medium">Skype call with class</p>
                   <div className="d-flex  align-items-center">
-                    <div className="badge badge-warning">12.30 AM</div>
-                    <small className="text-muted ml-2">San Francisco, CA</small>
-                    <div className="image-grouped ml-auto mt-2 mt-xl-0">
-                      <img src={require("../../assets/images/faces/face20.jpg")} alt="profile "/>
-                      <img src={require("../../assets/images/faces/face17.jpg")} alt="profile "/>
-                      <img src={require("../../assets/images/faces/face14.jpg")} alt="profile " /> </div>
+                    <div className="badge badge-warning">5:00 PM</div>
+                    <small className="text-muted ml-2">Cambridge, Massachusetts</small>
+                    
                   </div>
                 </div>
                 <div className="event py-3">
-                  <p className="mb-2 font-weight-medium">Meeting with client</p>
+                  <p className="mb-2 font-weight-medium">Help Session with Charlie</p>
                   <div className="d-flex  align-items-center">
-                    <div className="badge badge-danger">4.15 AM</div>
+                    <div className="badge badge-danger">7:30 PM</div>
                     <small className="text-muted ml-2">San Diego, CA</small>
-                    <div className="image-grouped ml-auto mt-2 mt-xl-0">
-                      <img src={require("../../assets/images/faces/face21.jpg")} alt="profile"/>
-                      <img src={require("../../assets/images/faces/face16.jpg")} alt="profile" /> </div>
+                    
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div className="col-xl-4 col-lg-6 col-sm-6 grid-margin stretch-card">
+          <div className="card">
+              <div className="card-body">
+                <h4 className="card-title">Average Class Emotion</h4>
+                <p>One image to collectively show your class's understanding.</p>
+                <div width = '100%'>
+                <img width = '100%' src = {require("../../assets/images/FlatIcon_Neutral.svg")}></img> 
+                </div>
+                </div>
+              </div>
+          </div>
+          {/*
           <div className="col-xl-4 col-lg-12 col-sm-12 grid-margin stretch-card">
             <div className="row flex-grow">
               <div className="col-xl-12 col-lg-6 col-sm-6 grid-margin-0 grid-margin-xl stretch-card">
@@ -469,6 +423,7 @@ toggleProBanner() {
                   </div>
                 </div>
               </div>
+              
               <div className="col-xl-12 col-lg-6 col-sm-6 stretch-card">
                 <div className="card card-revenue-table mt-4 mt-sm-0 mt-xl-4">
                   <div className="card-body">
@@ -493,9 +448,13 @@ toggleProBanner() {
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
+          */}
         </div>
+        
+        {/*
         <div className="row">
           <div className="col-sm-6 col-md-6 col-lg-6 grid-margin stretch-card">
             <div className="card">
@@ -670,6 +629,8 @@ toggleProBanner() {
             </div>
           </div>
         </div>
+        */}
+        {/*
         <div className="row">
           <div className="col-12 grid-margin">
             <div className="card">
@@ -816,6 +777,7 @@ toggleProBanner() {
             </div>
           </div>
         </div>
+        */}
       </div> 
     );
   }

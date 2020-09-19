@@ -61,12 +61,11 @@ class Sidebar extends Component {
                 <Dropdown.Toggle className="nav-link user-switch-dropdown-toggler p-0 toggle-arrow-hide bg-transparent border-0 w-100">
                   <div className="d-flex justify-content-between align-items-start">
                     <div className="profile-image">
-                      <img src={ require("../../assets/images/faces/face8.jpg")} alt="profile" />
+                      <img src={ require("../../assets/images/Default_Profile_Picture.svg")} alt="profile" />
                     </div>
                     <div className="text-left ml-3">
-                      <p className="profile-name">Richard V.Welsh</p>
-                      <small className="designation text-muted text-small">Manager</small>
-                      <span className="status-indicator online"></span>
+                      <p className="profile-name">VARIABLE</p>
+                      <small className="designation text-muted text-small">Teacher</small>
                     </div>
                   </div>
                 </Dropdown.Toggle>
@@ -98,7 +97,7 @@ class Sidebar extends Component {
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
-              <button className="btn btn-success btn-block">New Project <i className="mdi mdi-plus"></i></button>
+              <button className="btn btn-danger btn-block">Start New Class   ◉</button>
             </div>
           </li>
           <li className={ this.isPathActive('/dashboard') ? 'nav-item active' : 'nav-item' }>
@@ -154,7 +153,9 @@ class Sidebar extends Component {
             <Collapse in={ this.state.userPagesMenuOpen }>
               <ul className="nav flex-column sub-menu">
                 <li className="nav-item"> <Link className={ this.isPathActive('/user-pages/blank-page') ? 'nav-link active' : 'nav-link' } to="/user-pages/blank-page">Blank Page</Link></li>
-                <li className="nav-item"> <Link className={ this.isPathActive('/user-pages/login-1') ? 'nav-link active' : 'nav-link' } to="/user-pages/login-1">Login</Link></li>
+                <li className="nav-item"> <Link className={ this.isPathActive('/teacher-login') ? 'nav-link active' : 'nav-link' } to="/teacher-login">Login</Link></li>
+                <li className="nav-item"> <Link className={ this.isPathActive('/student-login') ? 'nav-link active' : 'nav-link' } to = "/student-login">Login</Link></li>
+                <li className="nav-item"> <Link className={ this.isPathActive('/registration') ? 'nav-link active' : 'nav-link' } to = "/registration">Login</Link></li>
                 <li className="nav-item"> <Link className={ this.isPathActive('/user-pages/register-1') ? 'nav-link active' : 'nav-link' } to="/user-pages/register-1">Register</Link></li>
                 <li className="nav-item"> <Link className={ this.isPathActive('/user-pages/error-404') ? 'nav-link active' : 'nav-link' } to="/user-pages/error-404">404</Link></li>
                 <li className="nav-item"> <Link className={ this.isPathActive('/user-pages/error-500') ? 'nav-link active' : 'nav-link' } to="/user-pages/error-500">500</Link></li>
